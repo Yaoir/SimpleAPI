@@ -15,12 +15,3 @@ Limit log messages
 	Do not repeat messages more than N times.
 
 Unit testing can be added.
-
-========== publishing =========
-
-Next Steps:
-	Set up GitHub Repository:
-		Name: SimpleAPI
-		$ git init
-		$ git add <files>
-		$ git commit -m"Initial"

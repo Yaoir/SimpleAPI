@@ -6,7 +6,7 @@ This is the first release, for internal team review and discussion only.
 
 I am not considering this done yet, and am submitting it for the purpose of asking questions. I have another important job interview coming up that I need to prepare for, so I will ask questions now, wait for a response, and continue to finish this later, probably after I do that other interview.
 
-Reviewer(s): Please read the Assumptions and Questions sections, and let me know if I need to do anything differently. I will then make appropriate modifications and resubmit.
+**Reviewer(s)**: Please read the Assumptions and Questions sections, and let me know if I need to do anything differently. I will then make appropriate modifications and resubmit.
 
 #### Assumptions
 
@@ -31,7 +31,7 @@ If I made any of the above assumptions incorrectly, please let me know.
 2. Is there a preference for how to handle overflow (the next in the sequence
    being higher than a pre-defined limit) and underflow (the previous number
    being before zero, the start of the sequence)? The method I am using is
-   described in the subsection titled "Error Conditions" in this README file.
+   described in the subsection titled "Error Conditions" in this document.
 
 3. The specification did not say how the API should behave in the case of multiple clients using it.
 
@@ -70,11 +70,13 @@ or if you have GNU **make** installed:
 $ make
 ```
 
-The makefile contains many other targets that are helpful for development.
+The **makefile** contains many other targets that are helpful for development.
 
 ## Running the Server
 
+```
 $ fibserver
+```
 
 #### Command Options and Arguments
 
@@ -124,7 +126,7 @@ prints the next number in the sequence.
 $ fibserver -p 5000 -f /var/run/fibserver.data 2>/var/log/fibserver.log
 ```
 
-runs as a server on port 5000, using /var/run/fibserver.data as the data file, and with log messages written to /var/log/fibserver.log. (Note: /run typically uses the tmpfs volatile filesystem on Linux. Do not use this example if you need the API to survive operating system reboots. See the section Surviving Server Restarts and OS Reboots later in this document.)
+runs as a server on port **5000**, using **/var/run/fibserver.data** as the data file, and with log messages written to **/var/log/fibserver.log**. (Note: **/run** typically uses the **tmpfs** volatile filesystem on Linux. Do not use this example if you need the API to survive operating system reboots. See the section Surviving Server Restarts and OS Reboots later in this document.)
 
 ## API Documentation
 
@@ -195,9 +197,9 @@ The spec asked for an API that could handle 1000 requests per second, and run on
 ### Throughput
 
 Since minimum throughput was listed first in the requirements, the API server was designed with that as a top priority.
-It was specified that the server needs to run on a 1 CPU machine. 
+It was specified that the server needs to run on a 1 CPU machine. I assumed as little as possible about the level of performance of the CPU, and developed the server to run on as modest a machine as possible.
 
-The server called **runtime.MAXPROCS(1)** to limit the Go runtime to using only 1 CPU thread.
+For the tests, **fibserver** was run with the **-t** flag, and called **runtime.MAXPROCS(1)** to limit the Go runtime to using only 1 CPU thread.
 
 #### Client Side
 
@@ -259,4 +261,4 @@ While running the test on the development machine, total memory used remained co
 
 ## Additional Notes
 
-The TODO file in the repository contains a list of what I would do next if I continued to work on this.
+The **TODO** file in the repository contains a list of what I would do next if I continued to work on this.
