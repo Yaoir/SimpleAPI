@@ -1,0 +1,26 @@
+Testing
+	Implement a test script for regression testing, using the command-line interface.
+	This will check the internal operation of the server, including data file I/O.
+
+Optional
+--------
+
+Performance Optimization
+	For the _current_ operation, there is no need to write to the data file.
+	Just read the file, and return the current number in the sequence, and close the file.
+	Note: This affects the throughput testing, requiring the test to mix requests
+		to the endpoints, and not simply use current.
+
+Limit log messages
+	Do not repeat messages more than N times.
+
+Unit testing can be added.
+
+========== publishing =========
+
+Next Steps:
+	Set up GitHub Repository:
+		Name: SimpleAPI
+		$ git init
+		$ git add <files>
+		$ git commit -m"Initial"
