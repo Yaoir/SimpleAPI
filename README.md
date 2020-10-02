@@ -20,6 +20,7 @@ If I made any of the above assumptions incorrectly, please let me know.
 
 1. Will a 64-bit integer be sufficient for holding numbers in the sequence,
    or should I use arbitrary precision?
+
    There is a large performance tradeoff with supporting arbitrary-precision
    numbers, especially with very large numbers in the sequence. (I do not know for
    sure that this can be done while still meeting the 1000 request per second spec.)
@@ -27,6 +28,15 @@ If I made any of the above assumptions incorrectly, please let me know.
    arbitrary limit, rather than being limited to integers that fit in 64 bits.
    Aribitrary precision in Go can be added with the **math/big** package.
    https://golang.org/pkg/math/big/
+
+   Another option is to create a custom type that supports larger integer sizes
+   than the hardware. For example, a 256-bit integer can be stored as a slice (array)
+   of 32 bytes (unsigned 8-bit integers). (The number of bytes used to hold the
+   number can be configurable.) Then custom binary-to-alpha function can
+   be written to convert that into ASCII/Unicode for making the binary number into
+   a string of digits. Other operations need to be supported, such as addition and
+   subtraction, and comparisons. The advantage here would be a moderate loss in
+   throughput, while supporting much larger (and more) numbers in the sequence.
 
 2. Is there a preference for how to handle overflow (the next in the sequence
    being higher than a pre-defined limit) and underflow (the previous number
